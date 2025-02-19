@@ -11,8 +11,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class,
-    DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@EnableAutoConfiguration(
+    exclude = {
+      DataSourceAutoConfiguration.class,
+      DataSourceTransactionManagerAutoConfiguration.class,
+      HibernateJpaAutoConfiguration.class
+    })
 public class Application {
 
   public static void main(String[] args) {

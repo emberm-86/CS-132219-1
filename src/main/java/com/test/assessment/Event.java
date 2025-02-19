@@ -16,13 +16,14 @@ public class Event {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
+
   String logEventId;
   Long duration;
   String type;
   String host;
   Boolean alert;
 
-  public static Event.Builder builder() {
+  static Event.Builder builder() {
     return new Event.Builder();
   }
 

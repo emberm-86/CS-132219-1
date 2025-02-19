@@ -16,31 +16,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class ApplicationTests {
 
-  @Autowired
-  LogService logService;
+  @Autowired LogService logService;
 
-  @Autowired
-  EventRepository eventRepository;
+  @Autowired EventRepository eventRepository;
 
   @ParameterizedTest
   @MethodSource("createLogEventData")
   public void testConversion(List<LogEvent> logEvents) {
-    Event expectedA = Event.builder()
-        .logEventId("scsmbstgra")
-        .duration(5L)
-        .type("APPLICATION_LOG")
-        .host("12345")
-        .alert(true).build();
+    Event expectedA =
+        Event.builder()
+            .logEventId("scsmbstgra")
+            .duration(5L)
+            .type("APPLICATION_LOG")
+            .host("12345")
+            .alert(true)
+            .build();
 
-    Event expectedB = Event.builder()
-        .logEventId("scsmbstgrb")
-        .duration(3L)
-        .alert(false).build();
+    Event expectedB = Event.builder().logEventId("scsmbstgrb").duration(3L).alert(false).build();
 
-    Event expectedC = Event.builder()
-        .logEventId("scsmbstgrc")
-        .duration(8L)
-        .alert(true).build();
+    Event expectedC = Event.builder().logEventId("scsmbstgrc").duration(8L).alert(true).build();
 
     List<Event> events = logService.convertLogEventsToDbEvents(logEvents);
 
@@ -65,34 +59,35 @@ class ApplicationTests {
                     .state("STARTED")
                     .type("APPLICATION_LOG")
                     .host("12345")
-                    .timestamp(1491377495212L).build(),
-
+                    .timestamp(1491377495212L)
+                    .build(),
                 LogEvent.builder()
                     .id("scsmbstgrb")
                     .state("STARTED")
-                    .timestamp(1491377495213L).build(),
-
+                    .timestamp(1491377495213L)
+                    .build(),
                 LogEvent.builder()
                     .id("scsmbstgrc")
                     .state("FINISHED")
-                    .timestamp(1491377495218L).build(),
-
+                    .timestamp(1491377495218L)
+                    .build(),
                 LogEvent.builder()
                     .id("scsmbstgra")
                     .state("FINISHED")
                     .type("APPLICATION_LOG")
                     .host("12345")
-                    .timestamp(1491377495217L).build(),
-
+                    .timestamp(1491377495217L)
+                    .build(),
                 LogEvent.builder()
                     .id("scsmbstgrc")
                     .state("STARTED")
-                    .timestamp(1491377495210L).build(),
-
+                    .timestamp(1491377495210L)
+                    .build(),
                 LogEvent.builder()
                     .id("scsmbstgrb")
                     .state("FINISHED")
-                    .timestamp(1491377495216L).build())));
+                    .timestamp(1491377495216L)
+                    .build())));
   }
 
   @ParameterizedTest
@@ -112,14 +107,14 @@ class ApplicationTests {
                     .state("STARTED")
                     .type("APPLICATION_LOG")
                     .host("12345")
-                    .timestamp(1491377495212L).build(),
-
+                    .timestamp(1491377495212L)
+                    .build(),
                 LogEvent.builder()
                     .id("scsmbstgra")
                     .state("FINISHED")
                     .host("12345")
-                    .timestamp(1491377495214L).build())),
-
+                    .timestamp(1491377495214L)
+                    .build())),
         Arguments.of( // check for earlier finished record
             asList(
                 LogEvent.builder()
@@ -127,15 +122,15 @@ class ApplicationTests {
                     .state("STARTED")
                     .type("APPLICATION_LOG")
                     .host("12345")
-                    .timestamp(1491377495212L).build(),
-
+                    .timestamp(1491377495212L)
+                    .build(),
                 LogEvent.builder()
                     .id("scsmbstgra")
                     .state("FINISHED")
                     .type("APPLICATION_LOG")
                     .host("12345")
-                    .timestamp(1491377495211L).build())),
-
+                    .timestamp(1491377495211L)
+                    .build())),
         Arguments.of( // check for no corresponding finished record
             singletonList(
                 LogEvent.builder()
@@ -143,8 +138,8 @@ class ApplicationTests {
                     .state("STARTED")
                     .type("APPLICATION_LOG")
                     .host("12345")
-                    .timestamp(1491377495212L).build())),
-
+                    .timestamp(1491377495212L)
+                    .build())),
         Arguments.of( // check for no corresponding started record
             singletonList(
                 LogEvent.builder()
@@ -152,6 +147,7 @@ class ApplicationTests {
                     .state("FINISHED")
                     .type("APPLICATION_LOG")
                     .host("12345")
-                    .timestamp(1491377495212L).build())));
+                    .timestamp(1491377495212L)
+                    .build())));
   }
 }

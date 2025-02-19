@@ -9,18 +9,13 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LogEvent {
 
-  @JsonProperty
-  String id;
-  @JsonProperty
-  String state;
-  @JsonProperty
-  String type;
-  @JsonProperty
-  String host;
-  @JsonProperty
-  Long timestamp;
+  @JsonProperty String id;
+  @JsonProperty String state;
+  @JsonProperty String type;
+  @JsonProperty String host;
+  @JsonProperty Long timestamp;
 
-  public static Builder builder() {
+  static Builder builder() {
     return new Builder();
   }
 
